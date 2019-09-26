@@ -54,8 +54,8 @@ if dein#load_state('~/.cache/dein')
   "call dein#add('Quramy/tsuquyomi')
 
   " Autoformat
-  call dein#add('Chiel92/vim-autoformat')
-  " call dein#add('sbdchd/neoformat')
+  "call dein#add('Chiel92/vim-autoformat')
+  call dein#add('sbdchd/neoformat')
 
   " Parse .editorconfig
   call dein#add('editorconfig/editorconfig-vim')
@@ -117,6 +117,9 @@ if dein#load_state('~/.cache/dein')
   " call dein#add('OmniSharp/omnisharp-vim')
   "
   " call dein#add('beyondmarc/hlsl.vim')
+  "
+  " Rust
+  call dein#add('rust-lang/rust.vim')
 
   " Required:
   call dein#end()
@@ -306,7 +309,7 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTre
 
 fun! CheckAndSave()
   " checktime
-  " silent! wall
+  silent! w
   checktime
   silent! up!
 endfun
@@ -397,7 +400,7 @@ noremap <F7> :UndotreeToggle<CR>
 "" F9-F12 text management
 
 " F9 autoformat
-noremap <F9> :Autoformat<CR>
+noremap <F9> :Neoformat<CR>
 
 " F10 wrap paragraph
 noremap <F10> gqip<CR>
