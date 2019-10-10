@@ -254,8 +254,11 @@ set scrolloff=3
 " Use base16 color scheme
 "let g:solarized_termcolors=256
 "colorscheme solarized
-let base16colorspace=256
-colorscheme base16-harmonic-dark
+set termguicolors
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 " Nice font, only for gvim and thelike
 set guifont=Mononoki:h15
@@ -486,6 +489,9 @@ let g:ale_fixers = {'javascript': ['standard']}
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
 let g:ale_linters = {'javascript': ['eslint']}
+
+highlight ALEWarning guibg=#351300
+highlight ALEError guibg=#35001a
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " key mapping for window navigation
