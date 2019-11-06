@@ -5,11 +5,13 @@ function vms-windows
   /usr/bin/qemu-system-x86_64 \
     -name $vmname,process=$vmname \
     -m 2048 \
+    -M q35 \
     -enable-kvm \
     -net nic \
     -net user \
     -drive format=raw,file=/dev/zvol/zroot/vms/windows,cache=none \
     -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
     -machine type=q35,accel=kvm \
-    -rtc clock=host,base=localtime
+    -rtc clock=host,base=localtime \
+    $argv
 end
