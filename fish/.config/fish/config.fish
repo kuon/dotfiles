@@ -5,7 +5,7 @@ set -xg XDG_CONFIG_HOME "$HOME/.config"
 set -xg WINEARCH win32
 set -xg WINEPREFIX $HOME/.wine
 set -xg FZF_DEFAULT_COMMAND 'fd --type f'
-set -xg RUA_SUDO_COMMAND doas
+set -xg RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 
 alias ping='prettyping --nolegend'
 alias merge='/opt/sublime_merge/sublime_merge'
