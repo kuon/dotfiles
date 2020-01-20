@@ -1,0 +1,10 @@
+# Include-Guard
+snippet     guard
+options     head
+abbr #ifndef ... #define ... #endif
+    #ifndef ${1:`toupper(vim_snippets#Filename('$1_H_', 'UNTITLED_H_'))`}
+    #define $1
+
+        ${0:TARGET}
+    #endif /* $1 */
+
