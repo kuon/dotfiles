@@ -1,5 +1,4 @@
 input "6940:6963:ckb1:_Corsair_Gaming_K70_LUX_RGB_Keyboard_vKB" {
-  xkb_layout ch-fr-custom
   xkb_file /home/kuon/.xkb/xkbmap
   xkb_numlock enable
   xkb_options compose:menu
