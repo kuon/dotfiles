@@ -1550,7 +1550,7 @@ xkb_symbols "(unnamed)" {
     key <I188> {         [      parenright ] };
     key <I189> {         [         XF86New ] };
     key <I190> {         [            Redo ] };
-    key <FK13> {         [             F13 ] };
+    key <FK13> {         [             F13 ] };  # CUSTOM (with CKB caps lock)
     key <FK14> {         [     XF86Launch5 ] };
     key <FK15> {         [     XF86Launch6 ] };
     key <FK16> {         [     XF86Launch7 ] };
