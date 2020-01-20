@@ -14,7 +14,7 @@ alias vi=nvim
 alias ls='ls -F --color=auto --group-directories-first'
 alias l='ls -FGhl --color=auto --group-directories-first'
 alias la='ls -AFGhl --color=auto --group-directories-first'
-alias clip='xsel -b -i'
+alias clip='wl-copy -n'
 alias bin='wgetpaste -s dpaste -C'
 
 # Base16 Shell
