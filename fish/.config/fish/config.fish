@@ -6,6 +6,7 @@ set -xg WINEARCH win32
 set -xg WINEPREFIX $HOME/.wine
 set -xg FZF_DEFAULT_COMMAND 'fd --type f'
 set -xg RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
+set -xg ANDROID_HOME /opt/android-sdk
 
 alias ping='prettyping --nolegend'
 alias merge='/opt/sublime_merge/sublime_merge'
@@ -36,6 +37,7 @@ set -xg PATH $HOME/.node/bin $PATH
 set -xg PATH $HOME/go/bin $PATH
 set -xg PATH $HOME/.cargo/bin $PATH
 set -xg PATH $HOME/.local/bin $PATH
+set -xg PATH /opt/android-sdk/platform-tools/ /opt/android-sdk/tools/bin/ /opt/android-sdk/emulator/ $PATH
 #set -xg PATH /opt/android-ndk $PATH
 #set -xg ANDROID_NDK /opt/android-ndk
 #set -xg ANDROID_NDK_HOME /opt/android-ndk
