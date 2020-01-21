@@ -236,16 +236,7 @@ workspace 7 output DP-4
 workspace 8 output DP-4
 workspace 9 output DP-4
 
-exec jack_control start
-exec fcitx-autostart
-exec thunar --daemon
-exec ckb-next -b
-exec syncthing-gtk
-exec keepassxc
-exec pkill tmux
-exec mako
-exec swaybg -c "#06101a"
-
+exec /home/kuon/.config/sway/startup.sh
 
 
 assign [app_id="mpv"] 4
@@ -266,4 +257,5 @@ for_window [app_id="qalculate-gtk"] floating enable, resize set 640 600, move po
 
 for_window [window_type=utility] floating enable
 for_window [title="Android Emulator"] floating enable
+for_window [title="Emulator"] floating enable
 
