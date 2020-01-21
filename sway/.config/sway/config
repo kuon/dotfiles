@@ -6,14 +6,25 @@ input "6940:6963:ckb1:_Corsair_Gaming_K70_LUX_RGB_Keyboard_vKB" {
   repeat_delay 250
 }
 
+input "1241:4611:HID_04d9:1203" {
+  xkb_file /home/kuon/.xkb/xkbmap_numpad
+  xkb_numlock enable
+  repeat_rate 50
+  repeat_delay 250
+}
+
 client.focused #386189 #1b3249 #eff4fc #487aac #386189
 client.focused_inactive #5b5f65 #2e3034 #a6acb4 #72777f #5b5f65
 client.unfocused #2f3032 #1b1c1d #75777b #75777b #5c5e62
 
 
-output DP-4 pos 0 0
-output DP-5 pos 2560 0
-output DP-2 pos 5120 0
+set $center "Dell Inc. DELL U2715H GH85D5A40HRS"
+set $left "Dell Inc. DELL U2715H H7YCC62P0EBS"
+set $right "Dell Inc. DELL U2715H GH85D7BU0CUL"
+
+output $left pos 0 0
+output $center pos 2560 0
+output $right pos 5120 0
 
 titlebar_padding 2
 
@@ -203,7 +214,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   status_command i3status
-  tray_output DP-5
+  tray_output $center
   font pango:Fira Code Medium 10
   status_padding 0
   status_edge_padding 0
@@ -224,17 +235,19 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+bindsym F24 exec pactl set-source-mute jack_in toggle
 
-workspace 0 output DP-5
-workspace 1 output DP-5
-workspace 2 output DP-5
-workspace 3 output DP-5
-workspace 4 output DP-2
-workspace 5 output DP-2
-workspace 6 output DP-2
-workspace 7 output DP-4
-workspace 8 output DP-4
-workspace 9 output DP-4
+workspace 0 output $center
+workspace 1 output $center
+workspace 2 output $center
+workspace 3 output $center
+workspace 4 output $right
+workspace 5 output $right
+workspace 6 output $right
+workspace 7 output $left
+workspace 8 output $left
+workspace 9 output $left
+
 
 exec /home/kuon/.config/sway/startup.sh
 
