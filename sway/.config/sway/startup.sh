@@ -12,6 +12,7 @@ swaybg -c "#06101a" &
 mako &
 
 # Audio handling
+pulseaudio --daemonize
 jack_control start
 cadence-pulse2jack
 pactl set-default-sink jack_out
