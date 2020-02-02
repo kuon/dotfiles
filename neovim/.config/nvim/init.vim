@@ -107,7 +107,7 @@ Plug 'kkoomen/vim-doge'
 Plug 'editorconfig/editorconfig-vim'
 
 " Autocompletion
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Formatting
 Plug 'Chiel92/vim-autoformat'
@@ -419,6 +419,23 @@ let g:indentLine_char_list = ['']
 let g:indentLine_bufNameExclude = ["term:.*"]
 let g:indentLine_bufTypeExclude = ["startify"]
 let g:indentLine_fileTypeExclude = ["markdown"]
+
+" Wayland clipboard provider that strips carriage returns (GTK3 issue).
+" This is needed because currently there's an issue where GTK3 applications on
+" Wayland contain carriage returns at the end of the lines (this is a root
+" issue that needs to be fixed).
+let g:clipboard = {
+      \   'name': 'wayland-strip-carriage',
+      \   'copy': {
+      \      '+': 'wl-copy --foreground --type text/plain',
+      \      '*': 'wl-copy --foreground --type text/plain --primary',
+      \    },
+      \   'paste': {
+      \      '+': {-> systemlist('wl-paste  | tr -d "\r"')},
+      \      '*': {-> systemlist('wl-paste  --primary | tr -d "\r"')},
+      \   },
+      \   'cache_enabled': 1,
+      \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Mapping
