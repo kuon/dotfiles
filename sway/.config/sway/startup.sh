@@ -20,6 +20,6 @@ pactl set-default-sink jack_out
 
 fcitx-autostart &
 ckb-next -b &
-syncthing-gtk &
+syncthing &
 keepassxc &
 
