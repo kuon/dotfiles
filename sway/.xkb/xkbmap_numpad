@@ -1172,6 +1172,9 @@ xkb_symbols "(unnamed)" {
 
     name[group1]="Swiss Custom";
 
+    key <KPEN> {         [        F24 ] };
+    key <KPDV> {         [        F23 ] };
+    key <KPMU> {         [        F22 ] };
     key  <ESC> {         [          Escape ] };
     key <AE01> {
         type= "FOUR_LEVEL",
@@ -1367,10 +1370,6 @@ xkb_symbols "(unnamed)" {
         symbols[Group1]= [           minus,      underscore,   dead_belowdot,   dead_abovedot ]
     };
     key <RTSH> {         [         Shift_R ] };
-    key <KPMU> {
-        type= "CTRL+ALT",
-        symbols[Group1]= [     KP_Multiply,     KP_Multiply,     KP_Multiply,     KP_Multiply,   XF86ClearGrab ]
-    };
     key <LALT> {         [           Alt_L,          Meta_L ] };
     key <SPCE> {         [           space ] };
     key <CAPS> {         [       Caps_Lock ] };
@@ -1456,12 +1455,7 @@ xkb_symbols "(unnamed)" {
     key <HENK> {         [     Henkan_Mode ] };
     key <HKTG> {         [ Hiragana_Katakana ] };
     key <MUHE> {         [        Muhenkan ] };
-    key <KPEN> {         [        F24 ] };
     key <RCTL> {         [       Control_R ] };
-    key <KPDV> {
-        type= "CTRL+ALT",
-        symbols[Group1]= [       KP_Divide,       KP_Divide,       KP_Divide,       KP_Divide,      XF86Ungrab ]
-    };
     key <PRSC> {
         type= "PC_ALT_LEVEL2",
         symbols[Group1]= [           Print,         Sys_Req ]

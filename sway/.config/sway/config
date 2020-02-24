@@ -26,7 +26,7 @@ output $left pos 0 0
 output $center pos 2560 0
 output $right pos 5120 0
 
-titlebar_padding 2
+titlebar_padding 6 2
 
 focus_follows_mouse always
 
@@ -97,7 +97,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
 
 
 # switch to workspace
@@ -237,6 +237,8 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioMute exec pactl set-sink-mute jack_out toggle
 
 bindsym F24 exec pactl set-source-mute jack_in toggle && pkill -SIGRTMIN+10 i3blocks
+bindsym F23 output * dpms off
+bindsym F22 output * dpms on
 
 
 workspace 0 output $center
