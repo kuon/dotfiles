@@ -45,6 +45,7 @@ Plug 'psliwka/vim-smoothie'
 " Show indentation
 Plug 'Yggdroot/indentLine'
 
+
 " Toggle relative line numbering <Leader>r
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
@@ -66,7 +67,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 
 " Allows Rg to populate the quickfix list
-Plug 'jremmen/vim-ripgrep'
+"Plug 'jremmen/vim-ripgrep'
 
 " Jump to interesting places with a Git or Mercurial repo
 Plug 'wincent/vcs-jump'
@@ -313,8 +314,8 @@ set undofile
 set undodir=~/.vim/undo//
 
 " Show  tab characters. Visual Whitespace.
-"set list
-"set listchars=tab:>.,nbsp:¯,trail:¶
+set list
+set listchars=nbsp:⇒,trail:¶,tab:-->
 
 " Set status line
 "set statusline=[%02n]\ %f\ %(\[%M%R%H]%)%=\ %4l,%02c%2V\ %P%*
@@ -483,48 +484,42 @@ else
 let mapleader = "\<F13>"
 endif
 
-" Shift Enter insert a new line
-nmap <M-Enter> a<Enter><Esc>
+" alt enter is newline
+noremap <M-Enter> i<Enter><Esc>
 
 
-"" F1-F4 search files
+" save all
+noremap <Leader>s <Esc>:call CheckAndSave()<CR>
 
-" Fuzzy find git files with F1
-noremap <F1> :FZF<CR>
+" show undo
+noremap <Leader>u :UndotreeToggle<CR>
 
-" Fuzzy find buffers with F2
-noremap <F2> :Buffers<CR>
+" quit
+inoremap <Leader>q <Esc>:q!<CR>
+nnoremap <Leader>q :q!<CR>
+tnoremap <Leader>q <C-\><C-n>:q!<CR>
 
-" Toggle scratch term
-noremap <F3> :call ToggleScratchTerm()<CR>
+" format
+noremap <Leader>a :Autoformat<CR>
 
+" git
+noremap <Leader>g :call ToggleLazyGit()<CR>
+
+" Term shortcut
+noremap <Leader>ot :call ToggleScratchTerm()<CR>
+
+" Find files
+noremap <Leader>ff :Files<CR>
+" Find buffers
+noremap <Leader>fb :Buffers<CR>
+" Grep in files
+noremap <Leader>fg :Rg<CR>
 " Find in NERDTree
-noremap <F4> :NERDTreeFind<CR>
+noremap <Leader>fn :NERDTreeFind<CR>
 
-"" F5-F8 file management
 
-" F5 save all
-noremap <F5> <Esc>:call CheckAndSave()<CR>
-
-" F6 closes current
-inoremap <F6> <Esc>:q!<CR>
-nnoremap <F6> :q!<CR>
-tnoremap <F6> <C-\><C-n>:q!<CR>
-
-" Toggle UndoTree
-noremap <F7> :UndotreeToggle<CR>
-
-" Lazy git
-noremap <F8> :call ToggleLazyGit()<CR>
-
-"" F9-F12 text management
-
-" F9 autoformat
-noremap <F9> :Autoformat<CR>
-
-" F10 wrap paragraph
-noremap <F10> gqip<CR>
-
+" paragraph shortcut
+noremap <Leader>pw gqip<CR>
 
 " anzu
 " mapping
@@ -547,12 +542,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
       \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
+nnoremap <Leader>t :%Tabularize <CR>
 
 
 " Next buffer
