@@ -16,13 +16,37 @@ alias ls='ls -F --color=auto --group-directories-first'
 alias l='ls -FGhl --color=auto --group-directories-first'
 alias la='ls -AFGhl --color=auto --group-directories-first'
 alias clip='wl-copy -n'
-alias bin='wgetpaste -s dpaste -C'
+
+function pbin
+  wgetpaste -s dpaste 2>/dev/null | clip
+end
 
 # Base16 Shell
 if status --is-interactive
     set BASE16_SHELL "$HOME/.config/base16-shell/"
     source "$BASE16_SHELL/profile_helper.fish"
     base16-harmonic-dark
+end
+
+function shrinkpdf
+  set -l out (mktemp --suffix .pdf)
+  gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$out $argv[1]
+  if test $status != 0
+    return
+  end
+  mv $argv[1] $argv[1]~big
+  mv $out $argv[1]
+end
+
+complete -c shrinkpdf -f
+complete -c shrinkpdf -a "(__fish_complete_suffix pdf)"
+complete -c shrinkpdf -a "(__fish_complete_suffix PDF)"
+
+function ocrall
+  mkdir -p out/
+  for f in *.pdf
+    ocrmypdf -l fra $f out/$f
+  end
 end
 
 # Direnv
@@ -44,7 +68,7 @@ set -xg PATH /opt/android-sdk/platform-tools/ /opt/android-sdk/tools/bin/ /opt/a
 #set -xg PATH $HOME/elixir/bin $PATH
 
 if status --is-interactive
-  keychain --agents ssh --eval --quiet -Q id_rsa | source
+  keychain --agents ssh --eval --quiet -Q id_rsa id_yoda | source
 end
 
 #set -xg DISPLAY yoda.vv.goyman.com:0.0
