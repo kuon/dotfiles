@@ -17,6 +17,10 @@ Plug 'wincent/terminus'
 " NERDTree
 Plug 'preservim/nerdtree'
 
+" Local configuration files
+Plug 'embear/vim-localvimrc'
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Visual style
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -25,9 +29,9 @@ Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
 " Startup screen
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 
-" Makes tmux use airline colors
+" Makes tmux use airline colros
 Plug 'edkolev/tmuxline.vim'
 
 " Show git info in sidebar
@@ -51,6 +55,8 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Color theme
 Plug 'chriskempson/base16-vim'
+"Plug 'jacoborus/tender.vim'
+"Plug 'dracula/vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Navigation and search
@@ -63,8 +69,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 
 " File picker using ranger
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
+"Plug 'francoiscabrol/ranger.vim'
+"Plug 'rbgrouleff/bclose.vim'
 
 " Allows Rg to populate the quickfix list
 "Plug 'jremmen/vim-ripgrep'
@@ -186,6 +192,9 @@ set number
 " Break lines at word (requires Wrap lines)
 set linebreak
 
+set nowrap
+set sidescroll=5
+
 " Wrap-broken line prefix
 set showbreak=+++
 
@@ -279,7 +288,7 @@ set nolazyredraw
 " Lazy redraw (faster)
 " set lazyredraw
 "
-syntax sync minlines=256
+"syntax sync minlines=256
 set synmaxcol=200
 
 " Dark background
@@ -297,6 +306,10 @@ if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
+"if (has("termguicolors"))
+" set termguicolors
+"endif
+"colorscheme dracula
 
 " Nice font, only for gvim and thelike
 set guifont=Mononoki:h15
@@ -316,6 +329,7 @@ set undodir=~/.vim/undo//
 " Show  tab characters. Visual Whitespace.
 set list
 set listchars=nbsp:⇒,trail:¶,tab:-->
+set listchars+=precedes:<,extends:>
 
 " Set status line
 "set statusline=[%02n]\ %f\ %(\[%M%R%H]%)%=\ %4l,%02c%2V\ %P%*
@@ -386,6 +400,8 @@ let g:autoformat_verbosemode = 0
 
 " Markdown
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -406,10 +422,12 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
 let g:ale_linters = {'javascript': ['eslint']}
 
+" colors
 highlight ALEWarning guibg=#351300
 highlight ALEError guibg=#35001a
+highlight NonText guifg=#954EBC
 
-let g:startify_lists = [ { 'type': 'dir', 'header': ['   Recent Files'] } ]
+"let g:startify_lists = [ { 'type': 'dir', 'header': ['   Recent Files'] } ]
 
 " Configure FZF to use a floating window configuration
 let $FZF_DEFAULT_OPTS = '--layout=reverse'
@@ -418,8 +436,9 @@ let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 " Indent guides
 let g:indentLine_char_list = ['']
 let g:indentLine_bufNameExclude = ["term:.*"]
-let g:indentLine_bufTypeExclude = ["startify"]
+"let g:indentLine_bufTypeExclude = ["startify"]
 let g:indentLine_fileTypeExclude = ["markdown"]
+
 
 " Wayland clipboard provider that strips carriage returns (GTK3 issue).
 " This is needed because currently there's an issue where GTK3 applications on
@@ -437,6 +456,10 @@ let g:clipboard = {
       \   },
       \   'cache_enabled': 1,
       \ }
+
+let g:localvimrc_persistent = 1
+
+let g:localvimrc_persistence_file = expand('$HOME') . "/.local/localvimrc_persistent"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Mapping
@@ -494,10 +517,15 @@ noremap <Leader>s <Esc>:call CheckAndSave()<CR>
 " show undo
 noremap <Leader>u :UndotreeToggle<CR>
 
+" close window/buffer
+inoremap <Leader>w <Esc>:Bclose<CR>
+nnoremap <Leader>w :Bclose<CR>
+tnoremap <Leader>w <C-\><C-n>:Bclose<CR>
+
 " quit
-inoremap <Leader>q <Esc>:q!<CR>
-nnoremap <Leader>q :q!<CR>
-tnoremap <Leader>q <C-\><C-n>:q!<CR>
+inoremap <Leader>q <Esc>:qa!<CR>
+nnoremap <Leader>q :qa!<CR>
+tnoremap <Leader>q <C-\><C-n>:qa!<CR>
 
 " format
 noremap <Leader>a :Autoformat<CR>
@@ -509,6 +537,7 @@ noremap <Leader>g :call ToggleLazyGit()<CR>
 noremap <Leader>ot :call ToggleScratchTerm()<CR>
 
 " Find files
+noremap <Leader>f :Files<CR>
 noremap <Leader>ff :Files<CR>
 " Find buffers
 noremap <Leader>fb :Buffers<CR>
@@ -520,6 +549,12 @@ noremap <Leader>fn :NERDTreeFind<CR>
 
 " paragraph shortcut
 noremap <Leader>pw gqip<CR>
+
+" full screen
+noremap <Leader>m :Goyo<CR>
+
+" Build
+noremap <Leader>b :silent make<CR>
 
 " anzu
 " mapping
@@ -570,15 +605,15 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTre
 "au InsertLeave,BufLeave,FocusLost,CursorHold,CursorHoldI * :call CheckAndSave()
 au VimLeave,BufLeave,FocusLost * :call CheckAndSave()
 
-" Start NERDTree automatically
-augroup ProjectDrawer
-  " Clear group
-  au!
-  " Start NERDTree
-  au VimEnter * NERDTree
-  " Go to previous (last accessed) window.
-  au VimEnter * wincmd p
-augroup END
+" " Start NERDTree automatically
+" augroup ProjectDrawer
+"   " Clear group
+"   au!
+"   " Start NERDTree
+"   au VimEnter * NERDTree
+"   " Go to previous (last accessed) window.
+"   au VimEnter * wincmd p
+" augroup END
 
 au BufEnter term://* startinsert
 au BufEnter * :syn sync maxlines=500
@@ -589,7 +624,7 @@ au FileAppendPre * :call StripTrailingWhitespaces()
 au FilterWritePre * :call StripTrailingWhitespaces()
 au BufWritePre * :call StripTrailingWhitespaces()
 
-au BufLeave,FocusLost,CursorHold,CursorHoldI * :call StripTrailingWhitespaces()
+au BufLeave,FocusLost * :call StripTrailingWhitespaces()
 
 "au CursorMoved * :call StripTrailingWhitespaces()
 
@@ -707,3 +742,12 @@ fun! CleanupBuffer(buf)
         silent execute 'bwipeout! '.a:buf
     endif
 endfun
+
+
+
+fun! PBin() range
+  echo system('echo '.shellescape(join(getline(a:firstline, a:lastline), "\n")).'| wgetpaste -s dpaste 2>/dev/null | wl-copy -n ')
+endfunction
+
+com -range=% -nargs=0 PBin :<line1>,<line2>call PBin()
+
