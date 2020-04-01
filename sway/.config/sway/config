@@ -129,6 +129,10 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 bindcode $mod+Shift+20 move container to workspace 11
 
+# move focused container to workspace
+bindsym $mod+p move container to scratchpad
+bindsym $mod+Shift+p scratchpad show
+
 bindsym $mod+KP_End  workspace 1
 bindsym $mod+KP_Down  workspace 2
 bindsym $mod+KP_Next  workspace 3
@@ -276,4 +280,6 @@ for_window [app_id="qalculate-gtk"] floating enable, resize set 640 600, move po
 for_window [window_type=utility] floating enable
 for_window [title="Android Emulator"] floating enable
 for_window [title="Emulator"] floating enable
+
+for_window [class="Kicad" title="Footprint Library.*"] floating enable, move position center
 
