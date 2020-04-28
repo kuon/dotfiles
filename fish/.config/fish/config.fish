@@ -7,6 +7,8 @@ set -xg WINEPREFIX $HOME/.wine
 set -xg FZF_DEFAULT_COMMAND 'fd --type f'
 set -xg RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 set -xg ANDROID_HOME /opt/android-sdk
+set -xg PRINTER brother
+set -xg JAVA_HOME /usr/lib/jvm/java-13-openjdk/
 
 alias ping='prettyping --nolegend'
 alias merge='/opt/sublime_merge/sublime_merge'
@@ -57,7 +59,7 @@ eval (direnv hook fish)
 #
 #set -xg SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 
-set -xg PATH $HOME/.node/bin $PATH
+set -xg PATH $HOME/.npm-global/bin $PATH
 set -xg PATH $HOME/go/bin $PATH
 set -xg PATH $HOME/.cargo/bin $PATH
 set -xg PATH $HOME/.local/bin $PATH

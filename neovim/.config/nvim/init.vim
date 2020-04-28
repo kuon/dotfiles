@@ -12,7 +12,7 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'tpope/vim-sensible'
 
 " Standard terminal integration improvements
-Plug 'wincent/terminus'
+"Plug 'wincent/terminus'
 
 " NERDTree
 Plug 'preservim/nerdtree'
@@ -70,7 +70,7 @@ Plug 'airblade/vim-rooter'
 
 " File picker using ranger
 "Plug 'francoiscabrol/ranger.vim'
-"Plug 'rbgrouleff/bclose.vim'
+Plug 'rbgrouleff/bclose.vim'
 
 " Allows Rg to populate the quickfix list
 "Plug 'jremmen/vim-ripgrep'
@@ -363,8 +363,11 @@ let g:deoplete#enable_at_startup = 1
 " CommandT ignored files
 let g:CommandTWildIgnore=&wildignore . ",*/node_modules,*/_build,*/tmp"
 
+let g:NERDTreeDirArrowExpandable = '⏵'
+let g:NERDTreeDirArrowCollapsible = '⏷'
+"let g:NERDTreeNodeDelimiter="\u00b7"
 let g:NERDTreeRespectWildIgnore = 1
-let NERDTreeIgnore = ['node-modules$']
+let g:NERDTreeIgnore = ['node-modules$']
 
 let g:formatdef_tsfmt = "'tsfmt --stdin '.bufname('%')"
 let g:formatdef_nimpretty = "'nimpretty -'"
@@ -391,6 +394,9 @@ let g:formatters_xml = ['tidy_xml2']
 
 let g:formatdef_ktlint = "'ktlint -F --stdin'"
 let g:formatters_kotlin = ['ktlint']
+
+let g:formatdef_standard2_javascript = '"/home/kuon/.npm-global/bin/standard --fix --stdin 2>/dev/null ; echo "'
+let g:formatters_javascript = [ 'standard2_javascript' ]
 
 " let g:formatters_hlsl = ['uncrustifyc']
 " let g:formatters_c = ['uncrustifyc']
@@ -426,6 +432,7 @@ let g:ale_linters = {'javascript': ['eslint']}
 highlight ALEWarning guibg=#351300
 highlight ALEError guibg=#35001a
 highlight NonText guifg=#954EBC
+highlight Title guifg=#954EBC
 
 "let g:startify_lists = [ { 'type': 'dir', 'header': ['   Recent Files'] } ]
 
