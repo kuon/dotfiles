@@ -1187,7 +1187,7 @@ xkb_symbols "(unnamed)" {
     };
     key <AE04> {
         type= "FOUR_LEVEL",
-        symbols[Group1]= [               4,        ccedilla,      onequarter,          dollar ]
+        symbols[Group1]= [               4,        ccedilla,      onequarter,          Ccedilla ]
     };
     key <AE05> {
         type= "FOUR_LEVEL",
@@ -1219,7 +1219,7 @@ xkb_symbols "(unnamed)" {
     };
     key <AE12> {
         type= "FOUR_LEVEL",
-        symbols[Group1]= [ dead_circumflex,      dead_grave,      dead_tilde,     dead_ogonek ]
+        symbols[Group1]= [ dead_circumflex,      dead_grave,      asciitilde,     dead_ogonek ]
     };
     key <BKSP> {         [       BackSpace,       BackSpace ] };
     key  <TAB> {         [             Tab,    ISO_Left_Tab ] };
@@ -1265,7 +1265,7 @@ xkb_symbols "(unnamed)" {
     };
     key <AD11> {
         type= "FOUR_LEVEL",
-        symbols[Group1]= [          egrave,      udiaeresis,     bracketleft,  dead_abovering ]
+        symbols[Group1]= [          egrave,      udiaeresis,     bracketleft, Egrave ]
     };
     key <AD12> {
         type= "FOUR_LEVEL",
@@ -1311,11 +1311,11 @@ xkb_symbols "(unnamed)" {
     };
     key <AC10> {
         type= "FOUR_LEVEL",
-        symbols[Group1]= [          eacute,      odiaeresis,      dead_acute, dead_doubleacute ]
+        symbols[Group1]= [          eacute,      odiaeresis,      dead_acute, Eacute ]
     };
     key <AC11> {
         type= "FOUR_LEVEL",
-        symbols[Group1]= [          agrave,      adiaeresis,       braceleft,      dead_caron ]
+        symbols[Group1]= [          agrave,      adiaeresis,       braceleft, Agrave]
     };
     key <TLDE> {
         type= "FOUR_LEVEL",
