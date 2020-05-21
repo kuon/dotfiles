@@ -106,6 +106,9 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Nice docblock generator
 Plug 'kkoomen/vim-doge'
 
+" Better search replace
+Plug 'tpope/vim-abolish'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Code formatting and linter
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
