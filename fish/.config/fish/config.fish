@@ -8,7 +8,8 @@ set -xg FZF_DEFAULT_COMMAND 'fd --type f'
 set -xg RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 set -xg ANDROID_HOME /opt/android-sdk
 set -xg PRINTER brother
-set -xg JAVA_HOME /usr/lib/jvm/java-13-openjdk/
+set -xg JAVA_HOME /usr/lib/jvm/java-14-openjdk/
+set -xg MOZ_DBUS_REMOTE 1
 
 alias ping='prettyping --nolegend'
 alias merge='/opt/sublime_merge/sublime_merge'

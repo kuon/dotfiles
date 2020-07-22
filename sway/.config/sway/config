@@ -13,6 +13,8 @@ input "1241:4611:HID_04d9:1203" {
   repeat_delay 250
 }
 
+seat * hide_cursor 2000
+
 client.focused #386189 #1b3249 #eff4fc #487aac #386189
 client.focused_inactive #5b5f65 #2e3034 #a6acb4 #72777f #5b5f65
 client.unfocused #2f3032 #1b1c1d #75777b #75777b #5c5e62
@@ -269,12 +271,9 @@ assign [class="slack"] 7
 for_window [class="Thunderbird" title="Edit Contact"] floating enable, resize set 1024 768, move position center
 for_window [app_id="inkscape"] move position center
 
-for_window [class="Spotify"] floating enable, move to workspace 9, resize set 1280 800, move position 0 0
-for_window [app_id="deadbeef"] move window to workspace 9, floating enable, resize set 1280 800, move position 1280 0
-for_window [title="kuon - KeePassXC"] floating enable, move window to workspace 9, resize set 1280 617, move position 0 800
 
-for_window [class="Toggl"] floating enable, move to workspace 9, resize set 640 640, move position 1280 800
 for_window [app_id="qalculate-gtk"] floating enable, resize set 640 600, move position center
+for_window [class="Jitsi"] floating enable, move position center
 
 
 for_window [window_type=utility] floating enable

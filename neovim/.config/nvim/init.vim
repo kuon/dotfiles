@@ -512,9 +512,9 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Change the leader key to something handy on the swiss keyboard
 if exists('$TMUX')
-let mapleader = "\<S-F1>"
+let mapleader = "\<S-§>"
 else
-let mapleader = "\<F13>"
+let mapleader = "§"
 endif
 
 " alt enter is newline
