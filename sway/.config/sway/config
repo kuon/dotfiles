@@ -242,7 +242,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioMute exec pactl set-sink-mute jack_out toggle
 
-bindsym F24 exec pactl set-source-mute jack_in toggle && pkill -SIGRTMIN+10 i3blocks
+bindsym F24 exec /home/kuon/.config/sway/mute.sh
 bindsym F23 output * dpms off
 bindsym F22 output * dpms on
 
@@ -263,13 +263,13 @@ exec /home/kuon/.config/sway/startup.sh
 
 
 assign [app_id="mpv"] 4
-assign [class="Riot"] 7
-assign [class="discord"] 7
 assign [class="chatty"] 7
 assign [class="slack"] 7
 
 for_window [class="Thunderbird" title="Edit Contact"] floating enable, resize set 1024 768, move position center
 for_window [app_id="inkscape"] move position center
+for_window [class="discord"] move to workspace 7
+for_window [class="Element"] move to workspace 7
 
 
 for_window [app_id="qalculate-gtk"] floating enable, resize set 640 600, move position center
