@@ -11,7 +11,7 @@ set -xg PRINTER brother
 set -xg JAVA_HOME /usr/lib/jvm/java-14-openjdk/
 set -xg MOZ_DBUS_REMOTE 1
 
-set -xg TERM xterm-color
+#set -xg TERM xterm-color
 
 alias ping='prettyping --nolegend'
 alias merge='/opt/sublime_merge/sublime_merge'
