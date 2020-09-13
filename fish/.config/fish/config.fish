@@ -13,7 +13,6 @@ set -xg MOZ_DBUS_REMOTE 1
 
 #set -xg TERM xterm-color
 
-alias ping='prettyping --nolegend'
 alias merge='/opt/sublime_merge/sublime_merge'
 alias cat=bat
 alias vi=nvim
