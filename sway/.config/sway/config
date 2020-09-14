@@ -13,7 +13,7 @@ input "1241:4611:HID_04d9:1203" {
   repeat_delay 250
 }
 
-seat * hide_cursor 2000
+seat * hide_cursor 10000
 
 client.focused #386189 #1b3249 #eff4fc #487aac #386189
 client.focused_inactive #5b5f65 #2e3034 #a6acb4 #72777f #5b5f65
@@ -38,13 +38,18 @@ font pango:monospace medium 10
 
 floating_modifier $mod
 
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
+bindsym $mod+Shift+Return exec firefox
 
 bindsym $mod+q kill
 bindsym $mod+Shift+q kill
 
 bindsym $mod+Escape exec makoctl dismiss --all
 
+# screenshot
+bindsym Print exec grim -g "$(slurp)" -t png - | wl-copy -t image/png
+bindsym Ctrl+Print exec grim -g "$(slurp)"
+bindsym Shift+Print exec grim
 
 # launcher
 bindsym $mod+d exec --no-startup-id rofi -m 0 -show drun
