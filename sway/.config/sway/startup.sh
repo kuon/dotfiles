@@ -11,6 +11,7 @@ swaybg -c "#06101a" &
 # Notification daemon
 mako &
 
+jack_control start
 
 fcitx-autostart &
 ckb-next -b &
