@@ -21,6 +21,7 @@ Plug 'preservim/nerdtree'
 Plug 'embear/vim-localvimrc'
 
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Visual style
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -124,6 +125,9 @@ Plug 'Chiel92/vim-autoformat'
 
 " Linter
 Plug 'w0rp/ale'
+
+" vim table
+Plug 'dhruvasagar/vim-table-mode'
 
 " Snippets
 Plug 'Shougo/neosnippet.vim'
@@ -363,6 +367,7 @@ set updatetime=2000
 "let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:deoplete#enable_at_startup = 1
 
+
 " CommandT ignored files
 let g:CommandTWildIgnore=&wildignore . ",*/node_modules,*/_build,*/tmp"
 
@@ -431,6 +436,10 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
 let g:ale_linters = {'javascript': ['eslint']}
 
+let $RUST_SRC_PATH='/home/kuon/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:racer_cmd = '/home/kuon/.cargo/bin/racer'
+let g:racer_experimental_completer = 1
+
 " colors
 highlight ALEWarning guibg=#351300
 highlight ALEError guibg=#35001a
@@ -467,9 +476,16 @@ let g:clipboard = {
       \   'cache_enabled': 1,
       \ }
 
-let g:localvimrc_persistent = 1
+let g:localvimrc_persistent = 2
 
 let g:localvimrc_persistence_file = expand('$HOME') . "/.local/localvimrc_persistent"
+let g:localvimrc_sandbox = 0
+
+let g:table_mode_corner='+'
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
+
+let g:rooter_patterns = ['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Mapping
@@ -522,7 +538,7 @@ noremap <M-Enter> i<Enter><Esc>
 
 
 " save all
-noremap <Leader>s <Esc>:call CheckAndSave()<CR>
+noremap <Leader>s <Esc>:call CheckAndSave(1)<CR>
 
 " show undo
 noremap <Leader>u :UndotreeToggle<CR>
@@ -587,7 +603,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
       \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-nnoremap <Leader>t :%Tabularize <CR>
+nnoremap <Leader>tt :%Tabularize <CR>
 
 
 " Next buffer
@@ -598,6 +614,9 @@ nnoremap <silent> <s-tab> :bprevious<CR>
 nnoremap <silent> <Leader>. :vsp<CR>
 " Creat hsplit
 nnoremap <silent> <Leader>- :sp<CR>
+
+nnoremap   - /
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Autocommands
@@ -613,28 +632,28 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTre
 
 " Autowrite when buffer changes and when focus is lost
 "au InsertLeave,BufLeave,FocusLost,CursorHold,CursorHoldI * :call CheckAndSave()
-au VimLeave,BufLeave,FocusLost * :call CheckAndSave()
+au VimLeave,BufLeave,FocusLost * :call CheckAndSave(0)
 
-" " Start NERDTree automatically
-" augroup ProjectDrawer
-"   " Clear group
-"   au!
-"   " Start NERDTree
-"   au VimEnter * NERDTree
-"   " Go to previous (last accessed) window.
-"   au VimEnter * wincmd p
-" augroup END
+" Start NERDTree automatically
+augroup ProjectDrawer
+  " Clear group
+  au!
+  " Start NERDTree
+  au VimEnter * NERDTree
+  " Go to previous (last accessed) window.
+  au VimEnter * wincmd p
+augroup END
 
 au BufEnter term://* startinsert
 au BufEnter * :syn sync maxlines=500
 
 
-au FileWritePre * :call StripTrailingWhitespaces()
-au FileAppendPre * :call StripTrailingWhitespaces()
-au FilterWritePre * :call StripTrailingWhitespaces()
-au BufWritePre * :call StripTrailingWhitespaces()
+"au FileWritePre * :call StripTrailingWhitespaces()
+"au FileAppendPre * :call StripTrailingWhitespaces()
+"au FilterWritePre * :call StripTrailingWhitespaces()
+"au BufWritePre * :call StripTrailingWhitespaces()
 
-au BufLeave,FocusLost * :call StripTrailingWhitespaces()
+"au BufLeave,FocusLost * :call StripTrailingWhitespaces()
 
 "au CursorMoved * :call StripTrailingWhitespaces()
 
@@ -644,8 +663,6 @@ au BufNewFile,BufRead *.cg set ft=hlsl
 
 au BufNewFile,BufRead secret setlocal noswapfile nobackup noundofile
 au BufRead,BufNewFile *.eex,*.leex set filetype=eelixir
-
-au User StartifyBufferOpened :Rooter
 
 "" Terminal Handling
 
@@ -659,27 +676,38 @@ au TermOpen * setlocal listchars= nonumber norelativenumber
 augroup FileTypes
   au!
   au FileType make setlocal noexpandtab sw=4 ts=4
-
+  au FileType markdown let b:table_mode_corner='+'
 augroup end
+
+"" Racer (rust) bindings
+augroup Racer
+    autocmd!
+    autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
+    autocmd FileType rust nmap <buffer> gs         <Plug>(rust-def-split)
+    autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
+    autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
+    autocmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
+    autocmd FileType rust nmap <buffer> <leader>gD <Plug>(rust-doc-tab)
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-fun! CheckAndSave()
-  " checktime
-  silent! w
-  checktime
-  silent! up!
+fun! CheckAndSave(strip)
+  if &modifiable && &binary == 0 && filereadable(expand("%"))
+    if a:strip == 1
+      call StripTrailingWhitespaces()
+    end
+    silent! up!
+  endif
 endfun
 
 fun! StripTrailingWhitespaces()
-  if &modifiable && &binary == 0
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-  endif
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
 endfun
 
 " Creates a floating window with a most recent buffer to be used
