@@ -1175,6 +1175,10 @@ xkb_symbols "(unnamed)" {
     key <KPEN> {         [        F24 ] };
     key <KPDV> {         [        F23 ] };
     key <KPMU> {         [        F22 ] };
+    key  <KP8> {         [        F21   ] };
+    key  <KP9> {         [        F20 ] };
+    key  <KP5> {         [        F19 ] };
+    key  <KP6> {         [        F18 ] };
     key  <ESC> {         [          Escape ] };
     key <AE01> {
         type= "FOUR_LEVEL",
@@ -1416,15 +1420,11 @@ xkb_symbols "(unnamed)" {
     key <NMLK> {         [        Num_Lock ] };
     key <SCLK> {         [     Scroll_Lock ] };
     key  <KP7> {         [         KP_Home,            KP_7 ] };
-    key  <KP8> {         [           KP_Up,            KP_8 ] };
-    key  <KP9> {         [        KP_Prior,            KP_9 ] };
     key <KPSU> {
         type= "CTRL+ALT",
         symbols[Group1]= [     KP_Subtract,     KP_Subtract,     KP_Subtract,     KP_Subtract,  XF86Prev_VMode ]
     };
     key  <KP4> {         [         KP_Left,            KP_4 ] };
-    key  <KP5> {         [        KP_Begin,            KP_5 ] };
-    key  <KP6> {         [        KP_Right,            KP_6 ] };
     key <KPAD> {
         type= "CTRL+ALT",
         symbols[Group1]= [          KP_Add,          KP_Add,          KP_Add,          KP_Add,  XF86Next_VMode ]

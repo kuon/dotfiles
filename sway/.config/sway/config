@@ -250,6 +250,10 @@ bindsym XF86AudioMute exec pactl set-sink-mute jack_out toggle
 bindsym F24 exec /home/kuon/.config/sway/mute.sh
 bindsym F23 output * dpms off
 bindsym F22 output * dpms on
+bindsym F21 exec sudo ddcutil -d 1 setvcp 60 0x10
+bindsym F20 exec sudo ddcutil -d 1 setvcp 60 0x0f
+bindsym F19 exec sudo ddcutil -d 2 setvcp 60 0x10
+bindsym F18 exec sudo ddcutil -d 2 setvcp 60 0x0f
 
 
 workspace 0 output $center
