@@ -436,7 +436,7 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
 let g:ale_linters = {'javascript': ['eslint']}
 
-let $RUST_SRC_PATH='/home/kuon/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let $RUST_SRC_PATH='/home/kuon/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 let g:racer_cmd = '/home/kuon/.cargo/bin/racer'
 let g:racer_experimental_completer = 1
 
