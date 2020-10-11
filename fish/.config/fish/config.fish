@@ -22,7 +22,7 @@ alias la='ls -AFGhl --color=auto --group-directories-first'
 alias clip='wl-copy -n'
 
 function pbin
-  wgetpaste -s dpaste 2>/dev/null | clip
+  wgetpaste -s bpaste 2>/dev/null | clip
 end
 
 # Base16 Shell
