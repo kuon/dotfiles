@@ -52,8 +52,7 @@ bindsym Ctrl+Print exec grim -g "$(slurp)"
 bindsym Shift+Print exec grim
 
 # launcher
-bindsym $mod+d exec --no-startup-id rofi -m 0 -show drun
-bindsym $mod+g exec --no-startup-id rofi -m 0 -show duckduckgo -modi duckduckgo:/home/kuon/.config/rofi/duckduckgo.sh#google:/home/kuon/.config/rofi/google.sh
+bindsym $mod+d exec --no-startup-id wofi --show drun -i
 
 
 # change focus
